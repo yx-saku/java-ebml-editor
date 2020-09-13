@@ -16,7 +16,7 @@ public class Writer {
     }
 
     /**
-     * ���݂̈ʒu����EBML ID��ǂݍ��ށB
+     * 現在の位置からEBML IDを読み込む。
      * 
      * @return
      * @throws IOException
@@ -29,7 +29,7 @@ public class Writer {
     }
 
     /**
-     * ���݂̈ʒu��vint���������݂܂��B
+     * 現在の位置にvintを書き込みます。
      * 
      * @return
      * @throws IOException
@@ -44,7 +44,7 @@ public class Writer {
     }
 
     /**
-     * �f�[�^���������݂܂��B
+     * データを書き込みます。
      * 
      * @param data
      * @return

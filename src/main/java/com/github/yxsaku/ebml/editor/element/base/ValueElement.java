@@ -16,7 +16,7 @@ public abstract class ValueElement<T> extends Element {
     }
 
     /**
-     * Reader‚ğ•Ô‚µ‚Ü‚·B
+     * Readerã‚’è¿”ã—ã¾ã™ã€‚
      * 
      * @return
      */
@@ -25,7 +25,7 @@ public abstract class ValueElement<T> extends Element {
     }
 
     /**
-     * bytebuffer‚ğŠe—v‘f‚²‚Æ‚ÌŒ^‚É•ÏŠ·‚·‚éB
+     * bytebufferã‚’å„è¦ç´ ã”ã¨ã®å‹ã«å¤‰æ›ã™ã‚‹ã€‚
      * 
      * @param data
      * @return
@@ -34,7 +34,7 @@ public abstract class ValueElement<T> extends Element {
     protected abstract T cast(ByteBuffer data);
 
     /**
-     * Še—v‘f‚²‚Æ‚ÌŒ^‚ğbytebuffer‚É•ÏŠ·‚·‚éB
+     * å„è¦ç´ ã”ã¨ã®å‹ã‚’bytebufferã«å¤‰æ›ã™ã‚‹ã€‚
      * 
      * @param data
      * @return
@@ -43,8 +43,8 @@ public abstract class ValueElement<T> extends Element {
     protected abstract ByteBuffer cast(T value);
 
     /**
-     * ƒtƒ@ƒCƒ‹‚æ‚èƒf[ƒ^•”‚ğ“Ç‚İ‚İA—v‘f‚²‚Æ‚ÌŒ^‚É•ÏŠ·‚µ‚Ä•Ô‚µ‚Ü‚·B<br>
-     * setValueƒƒ\ƒbƒh‚ğg‚Á‚Ä’l‚ğİ’è‚µ‚Ä‚¢‚éê‡‚ÍAİ’è‚µ‚½’l‚ğ•Ô‚µ‚Ü‚·B
+     * ãƒ•ã‚¡ã‚¤ãƒ«ã‚ˆã‚Šãƒ‡ãƒ¼ã‚¿éƒ¨ã‚’èª­ã¿è¾¼ã¿ã€è¦ç´ ã”ã¨ã®å‹ã«å¤‰æ›ã—ã¦è¿”ã—ã¾ã™ã€‚<br>
+     * setValueãƒ¡ã‚½ãƒƒãƒ‰ã‚’ä½¿ã£ã¦å€¤ã‚’è¨­å®šã—ã¦ã„ã‚‹å ´åˆã¯ã€è¨­å®šã—ãŸå€¤ã‚’è¿”ã—ã¾ã™ã€‚
      * 
      * @return
      * @throws IOException
@@ -56,7 +56,7 @@ public abstract class ValueElement<T> extends Element {
     }
 
     /**
-     * ’l‚ğİ’è‚µ‚Ü‚·B
+     * å€¤ã‚’è¨­å®šã—ã¾ã™ã€‚
      * 
      * @param value
      * @throws InvalidVintException
@@ -67,8 +67,8 @@ public abstract class ValueElement<T> extends Element {
     }
 
     /**
-     * ƒtƒ@ƒCƒ‹‚æ‚èƒf[ƒ^•”‚ğ“Ç‚İ‚İ‚Ü‚·B<br>
-     * setValue/setDataƒƒ\ƒbƒh‚ğg‚Á‚Ä’l‚ğİ’è‚µ‚Ä‚¢‚éê‡‚ÍAİ’è‚µ‚½’l‚ğbytebuffer‚Å•Ô‚µ‚Ü‚·B
+     * ãƒ•ã‚¡ã‚¤ãƒ«ã‚ˆã‚Šãƒ‡ãƒ¼ã‚¿éƒ¨ã‚’èª­ã¿è¾¼ã¿ã¾ã™ã€‚<br>
+     * setValue/setDataãƒ¡ã‚½ãƒƒãƒ‰ã‚’ä½¿ã£ã¦å€¤ã‚’è¨­å®šã—ã¦ã„ã‚‹å ´åˆã¯ã€è¨­å®šã—ãŸå€¤ã‚’bytebufferã§è¿”ã—ã¾ã™ã€‚
      * 
      * @return
      * @throws IOException
@@ -83,7 +83,7 @@ public abstract class ValueElement<T> extends Element {
     }
 
     /**
-     * ’l‚ğƒoƒCƒg”z—ñ‚Åİ’è‚µ‚Ü‚·B
+     * å€¤ã‚’ãƒã‚¤ãƒˆé…åˆ—ã§è¨­å®šã—ã¾ã™ã€‚
      * 
      * @return
      * 
@@ -93,7 +93,7 @@ public abstract class ValueElement<T> extends Element {
     }
 
     /**
-     * setValue/setDataƒƒ\ƒbƒh‚ğg‚Á‚Äİ’è‚µ‚½’l‚ğƒNƒŠƒA‚µ‚Ü‚·B
+     * setValue/setDataãƒ¡ã‚½ãƒƒãƒ‰ã‚’ä½¿ã£ã¦è¨­å®šã—ãŸå€¤ã‚’ã‚¯ãƒªã‚¢ã—ã¾ã™ã€‚
      */
     @Override
     public void clearValue() {
@@ -101,7 +101,7 @@ public abstract class ValueElement<T> extends Element {
     }
 
     /**
-     * ƒf[ƒ^ƒTƒCƒY‚ğæ“¾‚µ‚Ü‚·B
+     * ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å–å¾—ã—ã¾ã™ã€‚
      * 
      * @throws IOException
      */

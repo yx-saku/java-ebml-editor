@@ -12,7 +12,7 @@ public class VINT {
     public static final int MAX_LENGTH = 8;
 
     /**
-     * Œ»İ‚ÌˆÊ’u‚©‚çAvint‚Ì’·‚³‚ğæ“¾‚µ‚Ü‚·B ƒJ[ƒ\ƒ‹‚Íi‚İ‚Ü‚¹‚ñB
+     * ç¾åœ¨ã®ä½ç½®ã‹ã‚‰ã€vintã®é•·ã•ã‚’å–å¾—ã—ã¾ã™ã€‚ ã‚«ãƒ¼ã‚½ãƒ«ã¯é€²ã¿ã¾ã›ã‚“ã€‚
      * 
      * @return
      * @throws InvalidVintException
@@ -33,7 +33,7 @@ public class VINT {
     }
 
     /**
-     * “n‚³‚ê‚½buffer‚ÌŒ»İ‚ÌˆÊ’u‚©‚çvint‚ğ“Ç‚İæ‚éB
+     * æ¸¡ã•ã‚ŒãŸbufferã®ç¾åœ¨ã®ä½ç½®ã‹ã‚‰vintã‚’èª­ã¿å–ã‚‹ã€‚
      * 
      * @return
      * @throws InvalidVintException
@@ -60,7 +60,7 @@ public class VINT {
     }
 
     /**
-     * w’è‚³‚ê‚½’l‚ğvint‚É•ÏŠ·‚µ‚Ü‚·B
+     * æŒ‡å®šã•ã‚ŒãŸå€¤ã‚’vintã«å¤‰æ›ã—ã¾ã™ã€‚
      * 
      * @return
      * @throws InvalidVintException
@@ -69,19 +69,19 @@ public class VINT {
         ByteBuffer bytes = getMinBytes(value);
         int length = bytes.capacity();
         if (length + 1 > MAX_LENGTH) {
-            // ƒf[ƒ^•”‚Ì’·‚³ + 1iƒf[ƒ^’·•”j‚ªÅ‘å’·‚ğ’´‚¦‚éê‡A”ñ‘Î‰
+            // ãƒ‡ãƒ¼ã‚¿éƒ¨ã®é•·ã• + 1ï¼ˆãƒ‡ãƒ¼ã‚¿é•·éƒ¨ï¼‰ãŒæœ€å¤§é•·ã‚’è¶…ãˆã‚‹å ´åˆã€éå¯¾å¿œ
             throw new InvalidVintException("Unsupported length: " + length);
         }
 
         short first = (short) (bytes.get(0) >= 0 ? bytes.get(0) : bytes.get(0) + 256);
         short lenByte = (short) Math.pow(2, OCTET - length);
         if (first >= lenByte) {
-            // 1ƒoƒCƒg–Ú‚Éƒf[ƒ^‚ª“ü‚ç‚È‚¢
+            // 1ãƒã‚¤ãƒˆç›®ã«ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã‚‰ãªã„
             lenByte >>>= 1;
             ByteBuffer tmp = ByteBuffer.allocate(length + 1);
             bytes = tmp.put((byte) lenByte).put(bytes);
         } else {
-            // 1ƒoƒCƒg–Ú‚Éƒf[ƒ^‚ª“ü‚é
+            // 1ãƒã‚¤ãƒˆç›®ã«ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã‚‹
             bytes.put((byte) (bytes.get(0) + lenByte));
         }
 
@@ -90,7 +90,7 @@ public class VINT {
     }
 
     /**
-     * ”’l‚ğÅ¬‚ÌƒoƒCƒg”‚Ìbytebuffer‚É•ÏŠ·‚µ‚Ü‚·B
+     * æ•°å€¤ã‚’æœ€å°ã®ãƒã‚¤ãƒˆæ•°ã®bytebufferã«å¤‰æ›ã—ã¾ã™ã€‚
      * 
      * @param value
      * @return

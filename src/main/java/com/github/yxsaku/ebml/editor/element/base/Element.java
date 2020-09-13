@@ -24,7 +24,7 @@ public abstract class Element implements Cloneable {
     public long dataStart = -1;
 
     /**
-     * �v�f�̃w�b�_���iID�{�T�C�Y�j�̃T�C�Y���擾����B
+     * 要素のヘッダ部（ID部＋サイズ部）のサイズを取得する。
      * 
      * @return
      * @throws InvalidVintException
@@ -42,7 +42,7 @@ public abstract class Element implements Cloneable {
     }
 
     /**
-     * �v�f�S�̂̃T�C�Y��Ԃ��܂��B
+     * 要素全体のサイズを返します。
      * 
      * @throws InvalidVintException
      * @throws IOException
@@ -51,7 +51,17 @@ public abstract class Element implements Cloneable {
         return getHeaderSize() + getDataSize();
     }
 
+    /**
+     * 設定した値をクリアします。
+     */
     public abstract void clearValue();
 
+    /**
+     * データ部のサイズを取得します。
+     * 
+     * @return
+     * @throws InvalidVintException
+     * @throws IOException
+     */
     public abstract long getDataSize() throws InvalidVintException, IOException;
 }

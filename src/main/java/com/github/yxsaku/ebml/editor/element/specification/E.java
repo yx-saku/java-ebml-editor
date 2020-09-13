@@ -1,11 +1,10 @@
 package com.github.yxsaku.ebml.editor.element.specification;
 
 /**
- * Elementsクラスのエイリアス
+ * Elements繧ｯ繝ｩ繧ｹ縺ｮ繧ｨ繧､繝ｪ繧｢繧ｹ
  * 
  * @author yokoyama
  *
  */
 public class E extends Elements {
-
 }

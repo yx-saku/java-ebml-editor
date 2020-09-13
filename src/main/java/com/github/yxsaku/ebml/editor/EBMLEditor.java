@@ -30,7 +30,7 @@ public class EBMLEditor implements Closeable, Flushable {
     public final MasterElement root = new MasterElement();
 
     /**
-     * w’è‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ÌEBML\‘¢‚ğ“Ç‚İ‚İ‚Ü‚·B ƒƒ‚ƒŠ‚ğˆ³”—‚³‚¹‚È‚¢‚½‚ßAƒf[ƒ^•”‚Í“Ç‚İ‚İ‚Ü‚¹‚ñB
+     * æŒ‡å®šã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã®EBMLæ§‹é€ ã‚’èª­ã¿è¾¼ã¿ã¾ã™ã€‚ ãƒ¡ãƒ¢ãƒªã‚’åœ§è¿«ã•ã›ãªã„ãŸã‚ã€ãƒ‡ãƒ¼ã‚¿éƒ¨ã¯èª­ã¿è¾¼ã¿ã¾ã›ã‚“ã€‚
      * 
      * @param filePath
      * @throws UnknownElementException
@@ -47,7 +47,7 @@ public class EBMLEditor implements Closeable, Flushable {
     }
 
     /**
-     * Ä‹A“I‚ÉEBML—v‘f‚Ì\‘¢‚ğ“Ç‚İ‚ŞB
+     * å†å¸°çš„ã«EBMLè¦ç´ ã®æ§‹é€ ã‚’èª­ã¿è¾¼ã‚€ã€‚
      * 
      * @param parent
      * @throws IOException
@@ -56,11 +56,11 @@ public class EBMLEditor implements Closeable, Flushable {
      */
     private void readRecursive(MasterElement parent) throws InvalidVintException, IOException, UnknownElementException {
         while (true) {
-            // —v‘fIDæ“¾
+            // è¦ç´ IDå–å¾—
             long start = reader.getCursor();
             Integer elmId = reader.readElementId();
             if (elmId == null) {
-                // ƒtƒ@ƒCƒ‹‚ÌI‚í‚è‚É“’B
+                // ãƒ•ã‚¡ã‚¤ãƒ«ã®çµ‚ã‚ã‚Šã«åˆ°é”
                 if (parent.unknownSize) {
                     parent.end = start;
                 }
@@ -76,7 +76,7 @@ public class EBMLEditor implements Closeable, Flushable {
             elm.start = start;
 
             if (elm.level <= parent.level) {
-                // ŠK‘w‚ª•Ï‚í‚Á‚½‚½‚ßA—v‘f‚Ìæ“ª‚ÉƒJ[ƒ\ƒ‹‚ğ–ß‚µ‚Ä1‚Âã‚É–ß‚é
+                // éšå±¤ãŒå¤‰ã‚ã£ãŸãŸã‚ã€è¦ç´ ã®å…ˆé ­ã«ã‚«ãƒ¼ã‚½ãƒ«ã‚’æˆ»ã—ã¦1ã¤ä¸Šã«æˆ»ã‚‹
                 if (parent.unknownSize) {
                     parent.end = start;
                 }
@@ -84,32 +84,32 @@ public class EBMLEditor implements Closeable, Flushable {
                 return;
             }
 
-            // ƒf[ƒ^ƒTƒCƒYæ“¾
+            // ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºå–å¾—
             long sizeStart = reader.getCursor();
             Long size = reader.readVint();
             if (size == null) {
-                // TODO ƒ^ƒO‚Ì“r’†‚Åƒtƒ@ƒCƒ‹‚ªI‚í‚Á‚½ê‡AƒGƒ‰[H‚»‚Ìƒ^ƒO‚Í–³‹H
+                // TODO ã‚¿ã‚°ã®é€”ä¸­ã§ãƒ•ã‚¡ã‚¤ãƒ«ãŒçµ‚ã‚ã£ãŸå ´åˆã€ã‚¨ãƒ©ãƒ¼ï¼Ÿãã®ã‚¿ã‚°ã¯ç„¡è¦–ï¼Ÿ
                 throw new EOFException("Element size could not read.");
             }
 
             long sizeLen = reader.getCursor() - sizeStart;
             elm.dataStart = elm.start + idLen + sizeLen;
             if (size == VINT.MAX_VALUE) {
-                // ƒTƒCƒY•s’è
+                // ã‚µã‚¤ã‚ºä¸å®š
                 ((MasterElement) elm).unknownSize = true;
             } else {
                 elm.end = elm.dataStart + size;
             }
 
             if (elm.type == Type.Master) {
-                // q—v‘f‚ğ“Ç‚İ‚Ş
+                // å­è¦ç´ ã‚’èª­ã¿è¾¼ã‚€
                 readRecursive((MasterElement) elm);
             } else {
-                // ƒf[ƒ^‚Í“Ç‚İ‚Ü‚È‚¢
+                // ãƒ‡ãƒ¼ã‚¿ã¯èª­ã¿è¾¼ã¾ãªã„
                 reader.skip(size);
 
                 if (elm instanceof BlockElement) {
-                    // ƒƒ^ƒf[ƒ^‚ğ“Ç‚İ‚ñ‚Å‚¨‚­
+                    // ãƒ¡ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚“ã§ãŠã
                     ((BlockElement) elm).readBlockMetadata();
                 }
             }
@@ -119,7 +119,7 @@ public class EBMLEditor implements Closeable, Flushable {
     }
 
     /**
-     * Še—v‘f‚ğÄ‹A“I‚Éƒtƒ@ƒCƒ‹‚É‘‚«‚İ‚Ü‚·B
+     * å„è¦ç´ ã‚’å†å¸°çš„ã«ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãè¾¼ã¿ã¾ã™ã€‚
      * 
      * @param elements
      * @throws InvalidVintException
@@ -127,24 +127,24 @@ public class EBMLEditor implements Closeable, Flushable {
      */
     private void writeRecursive(List<Element> elements) throws IOException, InvalidVintException {
         for (Element e : elements) {
-            // ID‚Ì‘‚«‚İ
+            // IDã®æ›¸ãè¾¼ã¿
             writer.writeElementId(e.id);
-            // ƒf[ƒ^ƒTƒCƒY‚Ì‘‚«‚İ
+            // ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã®æ›¸ãè¾¼ã¿
             writer.writeVint(e.getDataSize());
 
             if (e.type == Type.Master) {
-                // q—v‘f‚Ì‘‚«‚İ
+                // å­è¦ç´ ã®æ›¸ãè¾¼ã¿
                 writeRecursive(((MasterElement) e).children);
             } else {
-                // ƒf[ƒ^‚Ì‘‚«‚İ
+                // ãƒ‡ãƒ¼ã‚¿ã®æ›¸ãè¾¼ã¿
                 writer.writeData(((ValueElement<?>) e).getData());
             }
         }
     }
 
     /**
-     * •ÏX“à—e‚ğw’è‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Éo—Í‚µ‚Ü‚·B<br>
-     * ƒƒ‚ƒŠã‚ÉƒLƒƒƒbƒVƒ…‚µ‚Ä‚¢‚éƒf[ƒ^’l‚ÍƒNƒŠƒA‚³‚ê‚Ü‚¹‚ñB
+     * å¤‰æ›´å†…å®¹ã‚’æŒ‡å®šã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã«å‡ºåŠ›ã—ã¾ã™ã€‚<br>
+     * ãƒ¡ãƒ¢ãƒªä¸Šã«ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã—ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿å€¤ã¯ã‚¯ãƒªã‚¢ã•ã‚Œã¾ã›ã‚“ã€‚
      * 
      * @throws IOException
      * @throws FileNotFoundException
@@ -158,8 +158,8 @@ public class EBMLEditor implements Closeable, Flushable {
     }
 
     /**
-     * •ÏX“à—e‚ğ“Ç‚İ‚İ’†‚Ìƒtƒ@ƒCƒ‹‚Éo—Í‚µ‚Ü‚·B<br>
-     * ƒƒ‚ƒŠã‚ÉƒLƒƒƒbƒVƒ…‚µ‚Ä‚¢‚éƒf[ƒ^’l‚ğ‘S‚ÄƒNƒŠƒA‚µ‚Ü‚·B
+     * å¤‰æ›´å†…å®¹ã‚’èª­ã¿è¾¼ã¿ä¸­ã®ãƒ•ã‚¡ã‚¤ãƒ«ã«å‡ºåŠ›ã—ã¾ã™ã€‚<br>
+     * ãƒ¡ãƒ¢ãƒªä¸Šã«ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã—ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿å€¤ã‚’å…¨ã¦ã‚¯ãƒªã‚¢ã—ã¾ã™ã€‚
      * 
      * @throws IOException
      * @throws FileNotFoundException
@@ -175,14 +175,14 @@ public class EBMLEditor implements Closeable, Flushable {
     }
 
     /**
-     * •ÒW‚ğI—¹‚µ‚Ü‚·B<br>
-     * •ÏX“à—e‚Í”jŠü‚³‚ê‚Ü‚·B
+     * ç·¨é›†ã‚’çµ‚äº†ã—ã¾ã™ã€‚<br>
+     * å¤‰æ›´å†…å®¹ã¯ç ´æ£„ã•ã‚Œã¾ã™ã€‚
      * 
      * @throws IOException
      */
     @Override
     public void close() throws IOException {
-        // reader‚ğ•Â‚¶‚é
+        // readerã‚’é–‰ã˜ã‚‹
         if (ic.isOpen())
             ic.close();
         is.close();

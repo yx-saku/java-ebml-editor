@@ -35,7 +35,7 @@ public class SignedIntegerElement extends ValueElement<Long> {
     }
 
     /**
-     * �o�C�g�T�C�Y���w�肵��ByteBuffer�ɕϊ����܂��B
+     * バイトサイズを指定してByteBufferに変換します。
      * 
      * @param value
      * @param size
@@ -62,17 +62,17 @@ public class SignedIntegerElement extends ValueElement<Long> {
     }
 
     /**
-     * �o�C�g�T�C�Y���w�肵�Ēl��ݒ肵�܂��B
+     * バイトサイズを指定して値を設定します。
      * 
-     * @param value �l
-     * @param size  �o�C�g�T�C�Y
+     * @param value 値
+     * @param size  バイトサイズ
      */
     public void setValue(Long value, int size) {
         this.data = cast(value, size);
     }
 
     /**
-     * Unsigned�Ƃ��Ēl���擾���܂��B
+     * Unsignedとして値を取得します。
      * 
      * @return
      * @throws InvalidVintException
@@ -83,7 +83,7 @@ public class SignedIntegerElement extends ValueElement<Long> {
     }
 
     /**
-     * Unsigned�Ƃ��Ēl��ݒ肵�܂��B
+     * Unsignedとして値を設定します。
      * 
      * @param value
      */
@@ -92,7 +92,7 @@ public class SignedIntegerElement extends ValueElement<Long> {
     }
 
     /**
-     * data����UnsignedInteger���擾����B
+     * dataからUnsignedIntegerを取得する。
      * 
      * @param data
      * @return

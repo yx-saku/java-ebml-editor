@@ -20,7 +20,7 @@ public class BlockElement extends BinaryElement {
     }
 
     /**
-     * �t�@�C������u���b�N�v�f��trackNumber, timecode, keyframe, invisible, discardable��ǂݍ��݂܂��B
+     * ファイルからブロック要素のtrackNumber, timecode, keyframe, invisible, discardableを読み込みます。
      * 
      * @throws IOException
      * @throws InvalidVintException
@@ -34,7 +34,7 @@ public class BlockElement extends BinaryElement {
     /**
      * {@inheritDoc}<br>
      * trackNumber, timecode, keyframe, invisible,
-     * discardable���ύX����Ă���ꍇ�́A���̓��e�𔽉f���܂��B
+     * discardableが変更されている場合は、その内容を反映します。
      * 
      * @throws IOException
      * @throws InvalidVintException
@@ -46,7 +46,7 @@ public class BlockElement extends BinaryElement {
 
     /**
      * {@inheritDoc}<br>
-     * trackNumber, timecode, keyframe, invisible, discardable���X�V���܂��B
+     * trackNumber, timecode, keyframe, invisible, discardableも更新します。
      * 
      * @throws InvalidVintException
      * @throws EOFException
@@ -60,7 +60,7 @@ public class BlockElement extends BinaryElement {
     /**
      * {@inheritDoc}<br>
      * trackNumber, timecode, keyframe, invisible,
-     * discardable���ύX����Ă���ꍇ�́A���̓��e�𔽉f���܂��B
+     * discardableが変更されている場合は、その内容を反映します。
      * 
      * @throws IOException
      * @throws InvalidVintException
@@ -76,7 +76,7 @@ public class BlockElement extends BinaryElement {
     }
 
     /**
-     * bytebuffer����u���b�N�v�f�̃��^�f�[�^��ǂݍ��ށB
+     * bytebufferからブロック要素のメタデータを読み込む。
      * 
      * @param buffer
      * @throws InvalidVintException
