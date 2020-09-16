@@ -43,7 +43,7 @@ try (EBMLEditor editor = new EBMLEditor("EBML file")) {
     System.out.pringln(duration.getValue());
     
     // setValue/setDataを使って値を設定した場合、次にgetValue/getDataを呼び出した際は設定した値を返します。I/Oは発生しません。
-    // setValueを使用してgetDataを呼び出した場合、getValueを使用してsetDataを呼び出した場合も同様です。
+    // setValueを使用してgetDataを呼び出した場合、setValueを使用してgetDataを呼び出した場合も同様です。
     duration.setValue(10000.0);
     System.out.pringln(duration.getValue()); // not I/O
     System.out.pringln(duration.getData());  // not I/O
